@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { ActionData } from './$types';
-	import { enhance } from '$app/forms';
 	import toast from 'svelte-french-toast';
 
 	export let form: ActionData;
@@ -10,12 +9,7 @@
 
 <h1 class="text-4xl">Login</h1>
 
-<form
-	action="?/login"
-	method="POST"
-	class="flex flex-col gap-4 justify-center items-center"
-	use:enhance
->
+<form action="?/login" method="POST" class="flex flex-col gap-4 justify-center items-center">
 	<div class={`flex flex-col ${form?.invalid ? 'text-red-700' : null}`}>
 		<label for="username">Username*</label>
 		<input type="text" name="username" id="username" class="p-2" />

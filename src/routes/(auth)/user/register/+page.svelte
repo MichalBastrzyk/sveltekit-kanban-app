@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
@@ -7,12 +6,7 @@
 
 <h1 class="text-4xl">Register</h1>
 
-<form
-	action="?/register"
-	method="POST"
-	class="flex flex-col gap-4 justify-center items-center"
-	use:enhance
->
+<form action="?/register" method="POST" class="flex flex-col gap-4 justify-center items-center">
 	<div class={`flex flex-col ${form?.taken || form?.invalid ? 'text-red-700' : null}`}>
 		<label for="username">Username*</label>
 		<input type="text" name="username" id="username" class="p-2" />
