@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  username      String   @unique
+  passwordHash  String
+  userAuthToken String   @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Todo {
+  id           Int         @id @unique @default(autoincrement())
+  kanban_id    Int
+  title        String
+  description  String
+  status       String
+  due          DateTime
+  created_at   DateTime    @default(now())
+  kanban_board KanbanBoard @relation(fields: [kanban_id], references: [id])
+}
+
+model KanbanBoard {
+  id         Int      @id @unique @default(autoincrement())
+  name       String
+  created_at DateTime
+  Todo       Todo[]
+}
